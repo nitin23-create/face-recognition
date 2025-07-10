@@ -31,12 +31,9 @@ def check_haarcascadefile():
     
 
 
-    exists = os.path.isfile("haarcascade_frontalface_default.xml.xml")
+    exists = os.path.isfile(r"c:\Users\Nitin\Desktop\face reco\face_reconition\haarcascade_frontalface_default.xml")
     if exists:
         pass
-    else:
-        mess._show(title='Some file missing', message='Please contact us for help')
-      
 
 
 
@@ -77,7 +74,7 @@ def save_pass():
 def change_pass():
     global master
     master = tk.Tk()
-    master.geometry("400x160")
+    master.geometry("1500x1500")
     master.resizable(False,False)
     master.title("Change Password")
     master.configure(background="white")
@@ -182,10 +179,10 @@ def TakeImages():
                 # display the frame
                 cv2.imshow('Taking Images', img)
             # wait for 100 miliseconds
-            if cv2.waitKey(100) & 0xFF == ord('q'):
+            if cv2.waitKey(10) & 0xFF == ord('q'):
                 break
             # break if the sample number is morethan 100
-            elif sampleNum > 100:
+            elif sampleNum > 10:
                 break
         cam.release()
         cv2.destroyAllWindows()
@@ -206,7 +203,8 @@ def TakeImages():
 def TrainImages():
     check_haarcascadefile()
     assure_path_exists("TrainingImageLabel/")
-    recognizer = cv2.face_LBPHFaceRecognizer.create()
+
+    recognizer = cv2.face.LBPHFaceRecognizer_create()
     harcascadePath = "haarcascade_frontalface_default.xml."
     detector = cv2.CascadeClassifier(harcascadePath)
     faces, ID = getImagesAndLabels("TrainingImage")
@@ -260,7 +258,7 @@ def TrackImages():
     else:
         mess._show(title='Data Missing', message='Please click on Save Profile to reset data!!')
         return
-    harcascadePath = "haarcascade_frontalface_default.xml.xml"
+    harcascadePath = "haarcascade_frontalface_default.xml"
     faceCascade = cv2.CascadeClassifier(harcascadePath)
 
     cam = cv2.VideoCapture(0)
@@ -352,59 +350,64 @@ mont={'01':'January',
 # GUI FRONT-END 
 
 window = tk.Tk()
-window.geometry("1280x720")
+window.geometry("1280x870")
 window.resizable(True,False)
 window.title("Recognition System")
-window.configure(background='#262523')
+window.configure(background="#f4f6f9")
 
-frame1 = tk.Frame(window, bg="#00aeff")
-frame1.place(relx=0.11, rely=0.17, relwidth=0.39, relheight=0.80)
+frame1 = tk.Frame(window, bg="#34495e",bd="6", relief="groove")
+frame1.place(relx=0.05, rely=0.17, relwidth=0.58, relheight=0.80)
 
-frame2 = tk.Frame(window, bg="#00aeff")
-frame2.place(relx=0.51, rely=0.17, relwidth=0.38, relheight=0.80)
+frame2 = tk.Frame(window, bg="#34495e",bd="6", relief="groove")
+frame2.place(relx=0.65, rely=0.17,relwidth=0.34, relheight=0.80)
 
-message3 = tk.Label(window, text="Face Recognition Based System" ,fg="white",bg="#262523" ,width=55 ,height=1,font=('times', 29, ' bold '))
+message3 = tk.Label(window, text="Face Recognition System" ,fg="white",bg="#2c3e50" ,width=85 ,height=3,font=('Helvetica', 22, ' bold '))
 message3.place(x=10, y=10)
 
-frame3 = tk.Frame(window, bg="#c4c6ce")
-frame3.place(relx=0.52, rely=0.09, relwidth=0.09, relheight=0.07)
+message4 = tk.Label(window, text="About",fg="white",bg="#2c3e50" ,width=20 ,height=3,font=('Helvetica', 15, ' bold '))
+message4 .place(x=10, y=20)
 
-frame4 = tk.Frame(window, bg="#c4c6ce")
-frame4.place(relx=0.36, rely=0.09, relwidth=0.16, relheight=0.07)
+frame3 = tk.Frame(window, )
+frame3.place(relx=0.52, rely=0.10, relwidth=0.09, relheight=0.03)
 
-datef = tk.Label(frame4, text = day+"-"+mont[month]+"-"+year+"  |  ", fg="orange",bg="#262523" ,width=55 ,height=1,font=('times', 22, ' bold '))
+frame4 = tk.Frame(window, )
+frame4.place(relx=0.37, rely=0.10, relwidth=0.16, relheight=0.03)
+
+
+
+datef = tk.Label(frame4, text = day+"-"+mont[month]+"-"+year+"  |  ", fg="#ffffff" ,bg="#2c3e50",width=0 ,font=('times', 15, ' bold '))
 datef.pack(fill='both',expand=1)
 
-clock = tk.Label(frame3,fg="orange",bg="#262523" ,width=55 ,height=1,font=('times', 22, ' bold '))
+clock = tk.Label(frame3,fg="#ffffff" ,bg="#2c3e50",width=0 ,font=('times', 15, ' bold '))
 clock.pack(fill='both',expand=1)
 tick()
 
-head2 = tk.Label(frame2, text="                       For New Registrations                       ", fg="white",bg="#0B0C6C" ,font=('times', 17, ' bold ') )
+head2 = tk.Label(frame2, text="                       For New Registrations                       ", fg="white",bg="#34495e" ,font=('times', 17, ' bold ') )
 head2.grid(row=0,column=0)
 
-head1 = tk.Label(frame1, text="                       For Already Registered                       ", fg="white",bg="#0B0C6C" ,font=('times', 17, ' bold ') )
-head1.place(x=0,y=0)
+head1 = tk.Label(frame1, text="                       For Already Registered                       ", fg="white",bg="#34495e" ,font=('times', 17, ' bold ') )
+head1.place(x=180,y=0)
 
-lbl = tk.Label(frame2, text="Enter ID",width=20  ,height=1  ,fg="black"  ,bg="#00aeff" ,font=('times', 17, ' bold ') )
-lbl.place(x=80, y=55)
+lbl = tk.Label(frame2, text="Enter ID",width=20  ,height=1  ,fg="#ffffff"  ,bg="#34495e" ,font=('times', 17, ' bold ') )
+lbl.place(x=0, y=55)
 
-txt = tk.Entry(frame2,width=32 ,fg="black",font=('times', 15, ' bold '))
-txt.place(x=30, y=88)
+txt = tk.Entry(frame2,width=40 ,fg="#ffffff",font=('times', 15, ' bold '))
+txt.place(x=65, y=88)
 
-lbl2 = tk.Label(frame2, text="Enter Name",width=20  ,fg="black"  ,bg="#00aeff" ,font=('times', 17, ' bold '))
-lbl2.place(x=80, y=140)
+lbl2 = tk.Label(frame2, text="Enter Name",width=20  ,fg="#ffffff"  ,bg="#34495e" ,font=('times', 17, ' bold '))
+lbl2.place(x=12, y=140)
 
-txt2 = tk.Entry(frame2,width=32 ,fg="black",font=('times', 15, ' bold ')  )
-txt2.place(x=30, y=173)
+txt2 = tk.Entry(frame2,width=40 ,fg="#ffffff",font=('times', 15, ' bold ')  )
+txt2.place(x=65, y=173)
 
-message1 = tk.Label(frame2, text="1)Take Images  >>>  2)Save Profile" ,bg="#00aeff" ,fg="black"  ,width=39 ,height=1, activebackground = "yellow" ,font=('times', 15, ' bold '))
+message1 = tk.Label(frame2, text="1)Take Images  >>>  2)Save Profile" ,bg="#34495e" ,fg="#ffffff"  ,width=39 ,height=1, activebackground = "yellow" ,font=('times', 15, ' bold '))
 message1.place(x=7, y=230)
 
-message = tk.Label(frame2, text="" ,bg="#00aeff" ,fg="black"  ,width=39,height=1, activebackground = "yellow" ,font=('times', 16, ' bold '))
+message = tk.Label(frame2, text="" ,bg="#34495e" ,fg="#ffffff"  ,width=39,height=1, activebackground = "light grey" ,font=('times', 16, ' bold '))
 message.place(x=7, y=450)
 
-lbl3 = tk.Label(frame1, text="Person Details",width=20  ,fg="black"  ,bg="#00aeff"  ,height=1 ,font=('times', 17, ' bold '))
-lbl3.place(x=100, y=115)
+lbl3 = tk.Label(frame1, text="Person Details",width=20  ,fg="#ffffff"  ,bg="#34495e"  ,height=1 ,font=('times', 17, ' bold '))
+lbl3.place(x=285, y=115)
 
 res=0
 exists = os.path.isfile("persondetails/persondetails.csv")
@@ -431,11 +434,11 @@ menubar.add_cascade(label='Help',font=('times', 29, ' bold '),menu=filemenu)
  # ATTENDANCE TABLE
 
 tv= ttk.Treeview(frame1,height =13,columns = ('name','date','time'))
-tv.column('name',width=130)
+tv.column('name',width=250)
 tv.column('#0',width=150)
-tv.column('date',width=100)
-tv.column('time',width=100)
-tv.grid(row=2,column=0,padx=(0,0),pady=(150,0),columnspan=4)
+tv.column('date',width=150)
+tv.column('time',width=150)
+tv.grid(row=2,column=0,padx=(60,0),pady=(150,0),columnspan=4)
 tv.heading('name',text ='NAME')
 tv.heading('#0',text ='ID')
 tv.heading('date',text ='DATE')
@@ -449,18 +452,15 @@ tv.configure(yscrollcommand=scroll.set)
 
 ## BUTTONS 
 
-clearButton = tk.Button(frame2, text="Clear", command=clear  ,fg="black"  ,bg="#e35353"  ,width=11 ,activebackground = "white" ,font=('times', 11, ' bold '))
-clearButton.place(x=335, y=86)
-clearButton2 = tk.Button(frame2, text="Clear", command=clear2  ,fg="black"  ,bg="#e35353"  ,width=11 , activebackground = "white" ,font=('times', 11, ' bold '))
-clearButton2.place(x=335, y=172)    
-takeImg = tk.Button(frame2, text="Take Images", command=TakeImages  ,fg="white"  ,bg="blue"  ,width=34  ,height=1, activebackground = "white" ,font=('times', 15, ' bold '))
+
+takeImg = tk.Button(frame2, text="Take Images", command=TakeImages  ,fg="white"  ,bg="#34495e"  ,width=38  ,height=1, activebackground = "white" ,font=('times', 15, ' bold '))
 takeImg.place(x=30, y=300)
-trainImg = tk.Button(frame2, text="Save Profile", command=psw ,fg="white"  ,bg="blue"  ,width=34  ,height=1, activebackground = "white" ,font=('times', 15, ' bold '))
+trainImg = tk.Button(frame2, text="Save Profile", command=psw ,fg="white"  ,bg="#34495e"  ,width=38  ,height=1, activebackground = "white" ,font=('times', 15, ' bold '))
 trainImg.place(x=30, y=380)
-trackImg = tk.Button(frame1, text="Open Camera to detect", command=TrackImages  ,fg="black"  ,bg="yellow"  ,width=35  ,height=1, activebackground = "white" ,font=('times', 15, ' bold '))
-trackImg.place(x=30,y=50)
-quitWindow = tk.Button(frame1, text="Quit", command=window.destroy  ,fg="black"  ,bg="red"  ,width=35 ,height=1, activebackground = "white" ,font=('times', 15, ' bold '))
-quitWindow.place(x=30, y=450)
+trackImg = tk.Button(frame1, text="Open Camera to detect", command=TrackImages  ,fg="black"  ,bg="#27ae60"  ,width=38  ,height=1, activebackground = "white" ,font=('times', 15, ' bold '))
+trackImg.place(x=200,y=50)
+quitWindow = tk.Button(frame1, text="Quit", command=window.destroy  ,fg="#ffffff"  ,bg="#e74c3c"  ,width=20 ,height=1, activebackground = "#b3b2b2" ,font=('times', 15, ' bold '))
+quitWindow.place(x=300, y=450)
 
 # END 
 
