@@ -431,7 +431,7 @@ filemenu.add_command(label='Contact Us', command = contact)
 filemenu.add_command(label='Exit',command = window.destroy)
 menubar.add_cascade(label='Help',font=('times', 29, ' bold '),menu=filemenu)
  
- # ATTENDANCE TABLE
+ # DATA TABLE
 
 tv= ttk.Treeview(frame1,height =13,columns = ('name','date','time'))
 tv.column('name',width=250)
