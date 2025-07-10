@@ -391,13 +391,13 @@ head1.place(x=180,y=0)
 lbl = tk.Label(frame2, text="Enter ID",width=20  ,height=1  ,fg="#ffffff"  ,bg="#34495e" ,font=('times', 17, ' bold ') )
 lbl.place(x=0, y=55)
 
-txt = tk.Entry(frame2,width=40 ,fg="#ffffff",font=('times', 15, ' bold '))
+txt = tk.Entry(frame2,width=40 ,fg="#000000",font=('times', 15, ' bold '))
 txt.place(x=65, y=88)
 
 lbl2 = tk.Label(frame2, text="Enter Name",width=20  ,fg="#ffffff"  ,bg="#34495e" ,font=('times', 17, ' bold '))
 lbl2.place(x=12, y=140)
 
-txt2 = tk.Entry(frame2,width=40 ,fg="#ffffff",font=('times', 15, ' bold ')  )
+txt2 = tk.Entry(frame2,width=40 ,fg="#000000",font=('times', 15, ' bold ')  )
 txt2.place(x=65, y=173)
 
 message1 = tk.Label(frame2, text="1)Take Images  >>>  2)Save Profile" ,bg="#34495e" ,fg="#ffffff"  ,width=39 ,height=1, activebackground = "yellow" ,font=('times', 15, ' bold '))
